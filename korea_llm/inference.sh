@@ -1,1 +1,3 @@
-CUDA_VISIBLE_DEVICES=3 python large_inference.py --model_name='etri-xainlp/qwen-ko-14b-instruct'
+CUDA_VISIBLE_DEVICES=3 python inference.py --model_name='spow12/POLAR-14B_4.3_very_big_sft'
+
+'
