@@ -2,14 +2,14 @@
 
 ## Directory Structure 
 |-- README.md
-`-- korea_llm
+|-- korea_llm
     |-- __pycache__
     |-- data
     |   |-- test_data.csv
-    |   `-- train_data.csv
+    |   |-- train_data.csv
     |-- inference.py
     |-- inference.sh
-    `-- vllm_inference.py
+    |-- vllm_inference.py
 
 ## Description
 - `data/`: 학습데이터/평가데이터 csv 파일 
