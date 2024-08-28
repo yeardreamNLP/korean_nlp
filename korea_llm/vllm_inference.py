@@ -151,33 +151,31 @@ if __name__ == "__main__":
 
     gc.collect()
 
-    accelerator = Accelerator()
+    # accelerator = Accelerator()
     #
     # # bitsandbytes 대신에 autoawq로 처리
     # # balanced로 균등하게
-    model = AutoAWQForCausalLM.from_pretrained(args.model_name, trust_remote_code=True, attn_implementation='sdpa',
-                                               **{'low_cpu_mem_usage': True})
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True, truncation=True)
+    # model = AutoAWQForCausalLM.from_pretrained(args.model_name, trust_remote_code=True, attn_implementation='sdpa',
+    #                                            **{'low_cpu_mem_usage': True})
+    # tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True, truncation=True)
 
-    quant_config = {
-        'zero_point': True,
-        'q_group_size': 128,
-        'w_bit': 4,
-        'version': 'GEMM'
-    }
+    # quant_config = {
+    #     'zero_point': True,
+    #     'q_group_size': 128,
+    #     'w_bit': 4,
+    #     'version': 'GEMM'
+    # }
 
-    model.to('cuda')
-    model.quantize(tokenizer, quant_config=quant_config)
-    model = accelerator.prepare_model(model, evaluation_mode=True)
-    # # Quantize
-    #
-    #
+    # model.to('cuda')
+    # model.quantize(tokenizer, quant_config=quant_config)
+    # model = accelerator.prepare_model(model, evaluation_mode=True)
+
     df = pd.read_csv(os.path.join(BASE_DIR, 'data/test_data.csv'), encoding='utf-8')
     df =df_preprocess(df)
 
     test_dataset = create_datasets(
         df,
-        tokenizer,
+        None,
         apply_chat_template=False
     )
     gc.collect()
